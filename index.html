@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script type="text/javascript">
+    let age = parseInt(window.prompt("Enter your age:"));
+    let height = parseInt(window.prompt("Enter your height in inches:"));
+    let weight = parseFloat(window.prompt("Enter your weight in pounds:"));
+    let activityLevel = (window.prompt("Enter your activity level from the following choices: Sedentary, Light Activity, Moderate Activity, Heavy Activity"));
+    let gender = (window.prompt("Enter your gender:"));
+    let formula = (window.prompt("Choose formula: Harris-Benedict or Mifflin-St.Jeor"));
+    let macroSplit = (window.prompt("Choose macro split from the following: Balanced/Zone, Low-Carb, High-Carb"));
+
+    let BMR = 0;
+    let weightInKG = weight / 2.205;
+    let heightInCM = height * 2.54; 
+
+    // if else to determine formula and calculate BMR
+    if (formula == "Harris-Benedict") {
+        if (gender == 'Male') {
+            BMR = (6.23762 * weight) + (12.7084 * height) - (6.755 * age) + 66.473;
+        } else if (gender == 'Female') {
+            BMR = (4.33789 * weight) + (4.69798 * height) - (4.6756 * age) + 655.0955;
+        }
+    } else if (formula == "Mifflin-St. Jeor") {
+        if (gender == 'Male') {
+            BMR = (10 * weightInKG) + (6.25 * heightInCM) - (5 * age) + 5;
+        } else if (gender == 'Female') {
+            BMR = (10 * weightInKG) + (6.25 * heightInCM) - (5 * age) - 161;
+        }
+    }
+
+
+    let TDEE = 0;
+    // switch to calculate TDEE 
+    switch (activityLevel) {
+        case 'Sedentary' :
+            TDEE = BMR * 1.2;
+            break;
+        case 'Light Activity' :
+            TDEE = BMR * 1.375;
+            break;
+        case 'Moderate Activity' :
+            maintenace = BMR * 1.55;
+            break;
+        case 'Heavy Activity' : 
+            TDEE = BMR * 1.725;
+            break;
+        default : 
+            document.write("Please fill out all prompts!");
+    }
+
+    let cals = TDEE; //change when adding in goals choice
+    let protein= 0;
+    let carbs = 0;
+    let fat = 0;
+
+    switch (macroSplit) {
+        case 'Balanced/Zone' :
+            protein = (cals * 0.3) / 4;
+            carbs = (cals * 0.4) / 4;
+            fat = (cals * 0.3) / 9;
+            break;
+        case 'Low-Carb' : 
+            protein = (cals * 0.3) / 4;
+            carbs = (cals * 0.2) / 4;
+            fat = (cals * 0.5) / 9;
+            break;
+        case 'High-Carb' :
+            protein = (cals * 0.2) / 4;
+            carbs = (cals * 0.55) / 4;
+            fat = (cals * 0.25) / 9;
+            break;
+    }
+
+    document.write("Your BMR is " + 
+    BMR.toLocaleString("en-US", {'minimumFractionDigits': 0, 'maximumFractionDigits':0}) + 
+    " calories and your TDEE is " + 
+    TDEE.toLocaleString("en-US", {'minimumFractionDigits': 0, 'maximumFractionDigits':0}) + " calories.<br><br>");
+
+    document.write("Here is your macro breakdown: <br>Protein: " + protein.toFixed(2) + " grams<br>Carbs: " + carbs.toFixed(2) + " grams<br>Fat: "  + fat.toFixed(2) + " grams");
+
+</script>
+</body>
+</html>
