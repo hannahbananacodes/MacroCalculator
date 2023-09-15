@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="macroForm">
+        <fieldset>
+            <label for="age">Enter your age: </label>
+            <input type="number" id="age">
+
+            <label for="weight">Enter your weight: </label>
+            <input type="number" id="weight">
+
+            <label for="height">Enter your height in inches: </label>
+            <input type="number" id="height">
+
+            <button type="submit">Submit</button>
+            
+        </fieldset>
+    </form>
+
+    <script type="text/javascript">
+        let macroForm = document.getElementById("macroForm");
+        macroForm.addEventListener("Submit", (e) => {
+            e.preventDefault();
+            
+            let age = document.getElementById("age");
+            let weight = document.getElementById("weight");
+            let height = document.getElementById("height");
+
+            document.write(age);
+            document.write(weight);
+            document.write(height);
+        }
+        
+        )
+    </script>
+</body>
+</html>
